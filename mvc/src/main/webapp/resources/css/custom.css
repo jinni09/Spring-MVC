@@ -1,0 +1,36 @@
+.btn-secondary {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+	-webkit-background-size: 200% 200%;
+	background-size: 200%;
+	background-position: 50%;
+}
+
+.btn-secondary:focus {
+	color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover, .btn-secondary:active:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-secondary:active {
+	background-image: none; /* 버튼을 클릭하고 나서 적용된 아래 bg-image를 기본값으로 다시 변경  */
+}
+
+.btn-secondary:active {
+	background-color: #616161;
+	background-image: -webkit-radial-gradient(circle, #616161 10%, #6c757d 11%);
+	background-image: -o-radial-gradient(circle, #616161 10%, #6c757d 11%);
+	background-image: radial-gradient(circle, #616161 10%, #6c757d 11%);
+	background-repeat: no-repeat;
+	-webkit-background-size: 1000% 1000%;
+	background-size: 1000%;
+	-webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
