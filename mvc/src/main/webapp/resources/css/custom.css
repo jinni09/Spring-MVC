@@ -1,3 +1,4 @@
+/* 회색 버튼 custom */
 .btn-secondary {
 	color: #fff;
 	background-color: #6c757d;
@@ -34,3 +35,4 @@
 	-webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
+/* 회색 버튼 custom end */
