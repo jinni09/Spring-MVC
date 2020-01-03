@@ -15,6 +15,12 @@
 				<ul class="nav navbar-nav">
 					<li><a href="board.do">게시판</a></li>
 				</ul>
+				<ul class="nav navbar-nav">
+					<li class="disabled"><a href="menu2.do">메뉴2</a></li>
+				</ul>
+				<ul class="nav navbar-nav">
+					<li class="disabled"><a href="menu3.do">메뉴3</a></li>
+				</ul>
 				<c:set var="no" value="${sessionScope.no}"></c:set>
 				<c:if test="${empty no}">
 					<ul class="nav navbar-nav navbar-right">

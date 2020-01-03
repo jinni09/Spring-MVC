@@ -576,9 +576,7 @@ if (typeof jQuery === 'undefined') {
 
   Collapse.prototype.show = function () {
     if (this.transitioning || this.$element.hasClass('in')) return
-    
-    $('.navbar-right').css('border-top','1px solid #efefef').css('border-bottom','1px solid #efefef'); // custom
-    
+
     var activesData
     var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
 
