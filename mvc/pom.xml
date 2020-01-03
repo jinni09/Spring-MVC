@@ -30,7 +30,19 @@
 		<maven-eclipse-plugin-version>2.10</maven-eclipse-plugin-version>
 		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
 		<exec-maven-plugin-version>1.6.0</exec-maven-plugin-version>
+		
+		<!--  -->
+		<ojdbc6-version>11.2.0.3</ojdbc6-version>
 	</properties>
+	
+	<!-- 오라클 드라이버 메이블 설정시 repository를 별도로 지정해주어야 한다. 버전마다 repository 다름. -->
+	<repositories>
+		<!-- odbc6 설정시 -->
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+	</repositories>
 	
 	<dependencies>
 		<!-- Spring -->
@@ -146,7 +158,38 @@
 			<artifactId>junit</artifactId>
 			<version>${junit-version}</version>
 			<scope>test</scope>
-		</dependency>        
+		</dependency>
+		
+		<!-- DB 설정 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>${ojdbc6-version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		 
 	</dependencies>
     <build>
         <plugins>

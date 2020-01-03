@@ -9,28 +9,28 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="/" class="navbar-brand">Top.jsp</a>
+				<a href="/mvc" class="navbar-brand">Top.jsp</a>
 			</div>
 			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav">
-					<li><a href="board.do">게시판</a></li>
+					<li><a href="board">Board</a></li>
 				</ul>
 				<ul class="nav navbar-nav">
-					<li class="disabled"><a href="menu2.do">메뉴2</a></li>
+					<li class="disabled"><a href="menu2">Menu2</a></li>
 				</ul>
 				<ul class="nav navbar-nav">
-					<li class="disabled"><a href="menu3.do">메뉴3</a></li>
+					<li class="disabled"><a href="menu3">Menu3</a></li>
 				</ul>
-				<c:set var="no" value="${sessionScope.no}"></c:set>
-				<c:if test="${empty no}">
+				<c:set var="m_no" value="${sessionScope.m_no}"></c:set>
+				<c:if test="${empty m_no}">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="login.do">로그인</a></li>
-						<li><a href="join.do">회원가입</a></li>
+						<li><a href="login">Sign in</a></li>
+						<li><a href="join">Sign up</a></li>
 					</ul>
 				</c:if>
-				<c:if test="${not empty no}">
+				<c:if test="${not empty m_no}">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="logout.do">로그아웃</a></li>
+						<li><a href="logout">Sign out</a></li>
 					</ul>
 				</c:if>
 			</div>
