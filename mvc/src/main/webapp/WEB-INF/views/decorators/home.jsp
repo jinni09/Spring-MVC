@@ -1,21 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	
-	<%-- <div class="container body">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner">
-				<div class="item active">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/space.jpg" >
-				</div>
-				<div class="item">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/space.jpg" >
-				</div>
-				<div class="item">
-					<img alt="" src="<%=request.getContextPath()%>/resources/img/space.jpg" >
-				</div>
-			</div>
-		</div>
-	</div> --%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -27,7 +12,6 @@
 	
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
-	
 				<div class="item active">
 					<img src="<%=request.getContextPath()%>/resources/img/space.jpg" alt="Los Angeles" style="width: 100%;">
 					<div class="carousel-caption">
@@ -35,7 +19,6 @@
 						<p>LA is always so much fun!</p>
 					</div>
 				</div>
-	
 				<div class="item">
 					<img src="<%=request.getContextPath()%>/resources/img/space.jpg" alt="Chicago" style="width: 100%;">
 					<div class="carousel-caption">
@@ -43,7 +26,6 @@
 						<p>Thank you, Chicago!</p>
 					</div>
 				</div>
-	
 				<div class="item">
 					<img src="<%=request.getContextPath()%>/resources/img/space.jpg" alt="New York" style="width: 100%;">
 					<div class="carousel-caption">
@@ -51,7 +33,6 @@
 						<p>We love the Big Apple!</p>
 					</div>
 				</div>
-	
 			</div>
 	
 			<!-- Left and right controls -->
@@ -65,7 +46,6 @@
 			</a>
 		</div>
 	</div>
-
 
 	<div class="container">
 	<!-- Example row of columns -->

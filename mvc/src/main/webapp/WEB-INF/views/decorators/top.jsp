@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	<div class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="main.do" class="navbar-brand">Top.jsp</a>
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+				<a href="/" class="navbar-brand">Top.jsp</a>
 			</div>
-			<div class="navbar-collapse collapse" id="navbar-main">
+			<div class="navbar-collapse collapse" id="navbar">
 				<ul class="nav navbar-nav">
 					<li><a href="board.do">게시판</a></li>
 				</ul>
-				<c:set var="no" value="${sessionScope.no }"></c:set>
+				<c:set var="no" value="${sessionScope.no}"></c:set>
 				<c:if test="${empty no}">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="login.do">로그인</a></li>
@@ -29,4 +29,4 @@
 				</c:if>
 			</div>
 		</div>
-	</div>
+	</nav>

@@ -220,6 +220,11 @@
 .navbar-brand {
 	font-size: 24px;
 }
+
+body { /* navbar-fixed-top height */
+  min-height: 2000px;
+  padding-top: 65px;
+}
 /* navbar custom end */
 
 
