@@ -10,29 +10,12 @@
 	<properties>	
 		<!-- Java -->
 		<java-version>1.8</java-version>
-		<javax.inject>1</javax.inject>
-		<junit-version>4.12</junit-version>
 		
 		<!-- Spring  -->
 		<org.springframework-version>4.3.14.RELEASE</org.springframework-version>
-		<org.aspectj-version>1.8.9</org.aspectj-version>
-		
-		<!-- Web -->
-		<jsp.version>2.2.1</jsp.version>
-		<jstl.version>1.2.1</jstl.version>
-		<servlet.version>3.1.0</servlet.version>
 		
 		<!-- Logging -->
-		<log4j-version>1.2.17</log4j-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
-		
-		<!-- Maven -->
-		<maven-eclipse-plugin-version>2.10</maven-eclipse-plugin-version>
-		<maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
-		<exec-maven-plugin-version>1.6.0</exec-maven-plugin-version>
-		
-		<!--  -->
-		<ojdbc6-version>11.2.0.3</ojdbc6-version>
 	</properties>
 	
 	<!-- 오라클 드라이버 메이블 설정시 repository를 별도로 지정해주어야 한다. 버전마다 repository 다름. -->
@@ -68,7 +51,7 @@
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
-		    <version>${org.aspectj-version}</version>
+		    <version>1.8.9</version>
 		</dependency>
 		
 		<!-- Logging -->
@@ -92,7 +75,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4j-version}</version>
+			<version>1.2.17</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.mail</groupId>
@@ -118,45 +101,33 @@
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
-			<version>${javax.inject}</version>
+			<version>1</version>
 		</dependency>
 				
 		<!-- Servlet -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>${servlet.version}</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet.jsp</groupId>
-		    <artifactId>javax.servlet.jsp-api</artifactId>
-		    <version>${jsp.version}</version>
-		    <scope>provided</scope>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		    <groupId>javax.servlet.jsp.jstl</groupId>
-		    <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-		    <version>${jstl.version}</version>
-		</dependency>		
-		<dependency>
-		    <groupId>org.glassfish.web</groupId>
-		    <artifactId>javax.servlet.jsp.jstl</artifactId>
-		    <version>${jstl.version}</version>
-		    <exclusions>
-		        <!-- jstl-api was adding selvlet-api 2.5 and jsp-api-->
-		        <exclusion>
-		            <artifactId>jstl-api</artifactId>
-		            <groupId>javax.servlet.jsp.jstl</groupId>
-		        </exclusion>
-		    </exclusions>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
 		</dependency>
 	
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit-version}</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -164,7 +135,7 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
-			<version>${ojdbc6-version}</version>
+			<version>11.2.0.3</version>
 			<scope>compile</scope>
 		</dependency>
 		
@@ -195,7 +166,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
-                <version>${maven-eclipse-plugin-version}</version>
+                <version>2.10</version>
                 <configuration>
                     <additionalProjectnatures>
                         <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
@@ -210,7 +181,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin-version}</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${java-version}</source>
                     <target>${java-version}</target>
@@ -222,7 +193,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>${exec-maven-plugin-version}</version>
+                <version>1.6.0</version>
                 <configuration>
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
