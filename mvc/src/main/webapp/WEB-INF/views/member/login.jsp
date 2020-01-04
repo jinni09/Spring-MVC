@@ -34,6 +34,6 @@
 			<input type="password" id="m_passwd" name="m_passwd" class="form-control" placeholder="Password" required>
 			<div id="msg"></div>
 			<button class="btn btn-lg btn-primary btn-block" type="button" onclick="login(); return false;">Sign in</button>
-			<button class="btn btn-lg btn-default btn-block" type="button" style="margin-top:10px;"onclick="location.href='join'; return false;">Sign up</button>
+			<button class="btn btn-lg btn-default btn-block" type="button" style="margin-top:10px;" onclick="location.href='join'; return false;">Sign up</button>
 		</form>
 	</div>

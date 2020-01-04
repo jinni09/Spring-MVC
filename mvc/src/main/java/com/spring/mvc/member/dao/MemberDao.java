@@ -22,7 +22,7 @@ public class MemberDao {
 			m_no = session.selectOne("member.selectMno", member);
 			if(m_no > 0) {
 				member.setM_no(m_no);
-				result = session.update("member.insertReMember", member);
+				result = session.update("member.updateMember", member);
 			}else {
 				m_number = session.selectOne("member.selectNum");
 				member.setM_no(m_number);
@@ -54,28 +54,10 @@ public class MemberDao {
 		return result;
 	}
 
-	public int m_nickChk(String m_nick, Member member) {
+	public int m_nickChk(String m_nick) {
 		int result = 0;
-		String selectNick = "";
-		String db_Nick = "";
 		try {
-			selectNick = session.selectOne("member.selectNick", member.getM_no());
-			db_Nick = session.selectOne("member.nickChk", member);
-			if(selectNick != null) {
-				if(db_Nick == null) {
-					result = -1;
-				}else if(db_Nick.equals(selectNick)) {
-					result = 0;
-				}else if(db_Nick != null){
-					result = 1;
-				}
-			}else {
-				if(db_Nick != null) {
-					result = 1;
-				}else {
-					result = -1;
-				}
-			}
+			result = session.selectOne("member.m_nickChk", m_nick);
 		}catch(Exception e) {
 			logger.info("error Message: ", e.getMessage());
 		}

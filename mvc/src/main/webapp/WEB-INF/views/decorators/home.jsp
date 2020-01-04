@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+	});
+</script>
+
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
@@ -45,7 +50,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-	</div> 
+	</div>
 
 	<div class="container">
 	<!-- Example row of columns -->

@@ -10,11 +10,11 @@
 			} else {
 			var sendData = 'm_email='+$('#m_email').val();
 			$.post('m_emailChk.do',sendData,function(msg){
- 	 			if(msg == "이미 사용 중이거나 탈퇴한 이메일입니다.") {
- 	 				$('#email_chk').html("<font class='red'>"+msg+"</font>");
+ 	 			if(msg == "success") {
+ 	 				$('#email_chk').html("<font class='red'>이미 사용 중이거나 탈퇴한 이메일입니다.</font>");
  	 				frm.mailChk.value = "false";
  	 			}else {
- 	 				$('#email_chk').html("<font class='green'>"+msg+"</font>");			
+ 	 				$('#email_chk').html("<font class='green'>사용 가능한 이메일입니다.</font>");			
  	 				frm.mailChk.value = "true";
  	 			}
  			});
@@ -54,13 +54,13 @@
 			} else if (regex.test(frm.m_nick.value) === false) {
 				$('#nick_chk').html("<font class='red'>한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
 			}else {
-				var sendData = 'm_nick='+$('#m_nick').val()+'&no=0';
-				$.post('m_nickChk.do',sendData,function(msg){
-	 	 			if(msg == "이미 사용 중인 닉네임입니다.") {
-	 	 				$('#nick_chk').html("<font class='red'>"+msg+"</font>");
+				var sendData = 'm_nick='+$('#m_nick').val();
+				$.post('m_nickChk',sendData,function(msg){
+	 	 			if(msg == "success") {
+	 	 				$('#nick_chk').html("<font class='red'>이미 사용 중인 닉네임입니다.</font>");
 	 	 				frm.nickChk.value = "false";
 	 	 			}else {
-	 	 				$('#nick_chk').html("<font class='green'>"+msg+"</font>");			
+	 	 				$('#nick_chk').html("<font class='green'>사용 가능한 닉네임입니다.</font>");			
 	 	 				frm.nickChk.value = "true";
 	 	 			}
  				});
@@ -135,7 +135,7 @@
 	}
 </script>
 
-	<div class="container">
+	<!-- <div class="container">
 		<div class="col-md-offset-14 col-md-5">
    			<div class="form-area">
 	       		<form action="join.do" role="form" name="frm" method="post" onsubmit="return chk()">
@@ -169,4 +169,25 @@
 				</form>
 			</div>
 		</div>
+	</div> -->
+	
+	<div class="container">
+		<form class="form-signup" action="join" role="form" name="frm" method="post" onsubmit="return chk()">
+			<input type="hidden" name="mailChk" value="false">
+			<input type="hidden" name="nickChk" value="false">
+			<h2 class="form-signup-heading">Sign Up</h2>
+			<label for="m_email" class="sr-only">Email address</label> 
+			<input type="email" id="m_email" name="m_email" class="form-control" placeholder="Email address" maxlength="30" required autofocus>
+			<span id="email_chk"> </span>
+			<label for="m_passwd" class="sr-only">Password</label> 
+			<input type="password" id="m_passwd" name="m_passwd" class="form-control" placeholder="Password" maxlength="20" required>
+			<span id="pwd_chk"> </span>
+			<label for="m_passwd2" class="sr-only">Password Confirm</label> 
+			<input type="password" id="m_passwd2" name="m_passwd2" class="form-control" placeholder="Password Confirm" maxlength="20" required>
+			<span id="pwd_chk2"> </span>
+			<label for="m_nick" class="sr-only">Nickname</label> 
+			<input type="text" id="m_nick" name="m_nick" class="form-control" placeholder="Nickname" maxlength="10" required>
+			<span id="nick_chk"> </span>
+			<button class="btn btn-lg btn-default btn-block" type="submit">Sign Up</button>
+		</form>
 	</div>

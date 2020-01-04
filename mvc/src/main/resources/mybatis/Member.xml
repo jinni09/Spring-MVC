@@ -24,7 +24,7 @@
 		select nvl(max(m_no),0) as m_no from member where m_email=#{m_email} and m_del_yn='y'
 	</select>
 	
-	<update id="insertReMember" parameterType="member">
+	<update id="updateMember" parameterType="member">
 		update member set m_passwd=#{m_passwd},m_nick=#{m_nick},m_reg_date=sysdate,m_del_yn='n' where m_no=#{m_no}
 	</update>
 	
@@ -36,12 +36,8 @@
 		select count(*) from member where m_email=#{m_email}
 	</select>
 	
-	<select id="selectNick" parameterType="Integer" resultType="String">
-		select m_nick from member where m_no=#{no}
-	</select>
-	
-	<select id="nickChk" parameterType="member" resultType="String">
-		(select m_nick from member where m_nick=#{m_nick} and m_no!=#{no} and m_del_yn='n') union (select m_nick from member where m_nick=#{m_nick} and m_no=#{no} and m_del_yn='n')
+	<select id="m_nickChk" parameterType="String" resultType="Integer">
+		select count(*) from member where m_nick=#{m_nick}
 	</select>
 	
 </mapper>

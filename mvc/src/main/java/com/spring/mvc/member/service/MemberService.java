@@ -24,8 +24,8 @@ public class MemberService {
 		return md.m_emailChk(m_email);
 	}
 
-	public int m_nickChk(String m_nick, Member member) {
-		return md.m_nickChk(m_nick, member);
+	public int m_nickChk(String m_nick) {
+		return md.m_nickChk(m_nick);
 	}
 	
 	public Member selectMember(int m_no) {
