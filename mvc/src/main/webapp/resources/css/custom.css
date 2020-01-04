@@ -270,6 +270,15 @@ body { /* navbar-fixed-top height */
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+.form-signin > div {
+	margin-bottom: 10px;
+}
+
+font {
+	color: red;
+	font-size: 12px;
+}
 /* login.jsp end */
 
 /* --------------------------------------------------------------  */

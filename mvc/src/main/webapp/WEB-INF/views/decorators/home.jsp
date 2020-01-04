@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<div class="container">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -9,7 +9,7 @@
 				<li data-target="#myCarousel" data-slide-to="1"></li>
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
-	
+			
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
@@ -45,7 +45,7 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-	</div>
+	</div> 
 
 	<div class="container">
 	<!-- Example row of columns -->

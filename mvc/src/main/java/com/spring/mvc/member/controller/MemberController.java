@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.mvc.member.model.Member;
 import com.spring.mvc.member.service.MemberService;
@@ -24,22 +25,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(Member member, String email, String passwd, Model model, HttpSession session) {
-		String result = ms.loginChk(email, passwd);
-		if(result == "passwdx") {
-			model.addAttribute("msg2", "암호가 다릅니다.");
-		}else if(result == "x") {
-			model.addAttribute("msg1", "없는 이메일입니다.");
-		}else {
-			int result2 = Integer.parseInt(result);
-			if(result2 > 0) {
-				session.setAttribute("no", result2);
-				System.out.println("m_no = " + result2);
-				return "redirect:/";
-			}
+	@ResponseBody
+	public String login(Member member, Model model, HttpSession session) {
+		int m_no = ms.loginChk(member);
+		String result = null;
+		if(m_no != 0) {
+			session.setAttribute("m_no", m_no);
+			result = "success";
 		}
-		model.addAttribute("pgm", "../member/login.jsp");
-		return "decorators/main";
+		return result;
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.GET)
@@ -93,7 +87,7 @@ public class MemberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:main.do";
+		return "redirect:/";
 	}
 		
 }

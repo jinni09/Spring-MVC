@@ -5,7 +5,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 모바일 브라우저의 뷰포트 크기 조절 -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Spring MVC</title>
 </head>
 <body>
 

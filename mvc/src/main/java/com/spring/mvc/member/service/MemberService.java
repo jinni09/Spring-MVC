@@ -16,8 +16,8 @@ public class MemberService {
 		return md.insertMember(member);
 	}
 
-	public String loginChk(String m_email, String m_passwd) {
-		return md.loginChk(m_email, m_passwd);
+	public int loginChk(Member member) {
+		return md.loginChk(member);
 	}
 
 	public int m_emailChk(String m_email) {

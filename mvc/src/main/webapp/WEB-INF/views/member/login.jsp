@@ -2,28 +2,38 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script type="text/javascript">
-	$(function() {
-		$('#email').keyup(function() {
-			$('#msg1').html("<font></font>");
-			$('#msg2').html("<font></font>");
+	function login() {
+		$.ajax({
+			type : "POST",
+			url : "login",
+			cache : false,
+			data : $("#login").serialize(),
+			dataType: "text",
+			success : function(data){
+				if(data == "success") {
+					location.href = "/mvc";
+				} else {
+					$("#m_passwd").val("");
+					$("#m_passwd").focus();
+					$("#msg").html("<font>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</font>");
+				}
+			},
+			error: function(xhr, status, error){
+				console.log(error);
+			}
 		});
-	});
+	}
 </script>
           
 	<div class="container">
-		<form class="form-signin" action="login" method="post">
+		<form class="form-signin" method="post" id="login">
 			<h2 class="form-signin-heading">Sign in</h2>
-			<label for="email" class="sr-only">Email address</label> 
-			<input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-			<c:if test="${not empty msg1}">
-				<span id="msg1"><font color="red"> ${msg1}</font></span>
-			</c:if>
-			<label for="password" class="sr-only">Password</label> 
-			<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-			<c:if test="${not empty msg2}">
-				<span id="msg2"><font color="red"> ${msg2}</font></span>
-			</c:if>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+			<label for="m_email" class="sr-only">Email address</label> 
+			<input type="email" id="m_email" name="m_email" class="form-control" placeholder="Email address" required autofocus>
+			<label for="m_passwd" class="sr-only">Password</label> 
+			<input type="password" id="m_passwd" name="m_passwd" class="form-control" placeholder="Password" required>
+			<div id="msg"></div>
+			<button class="btn btn-lg btn-primary btn-block" type="button" onclick="login(); return false;">Sign in</button>
 			<button class="btn btn-lg btn-default btn-block" type="button" style="margin-top:10px;"onclick="location.href='join'; return false;">Sign up</button>
 		</form>
 	</div>

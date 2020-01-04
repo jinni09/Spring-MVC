@@ -1,6 +1,8 @@
 package com.spring.mvc.member.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +13,8 @@ public class MemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate session;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberDao.class);
 	
 	public int insertMember(Member member) {
 		int result = 0, m_number = 0, m_no = 0;
@@ -25,38 +29,27 @@ public class MemberDao {
 				result = session.insert("member.insertMember", member);
 			}
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
 
-	public String loginChk(String email, String passwd) {
-		String result = "";
+	public int loginChk(Member member) {
+		int m_no = 0;
 		try {
-			String dbpass = session.selectOne("member.loginChk", email);
-			System.out.println("member dbpass : " + dbpass);
-			if(dbpass == null) {
-				result = "x";
-			}
-			else if(dbpass.equals(passwd)) {
-				result = session.selectOne("member.selectMno2", email);
-			}else {
-				result = "passwdx";
-			}
+			m_no = session.selectOne("member.loginChk", member);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
-		System.out.println("result : " + result);
-		return result;
+		return m_no;
 	}
 
 	public int m_emailChk(String m_email) {
 		int result = 0;
 		try {
 			result = session.selectOne("member.m_emailChk", m_email);
-			System.out.println(result);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -84,7 +77,7 @@ public class MemberDao {
 				}
 			}
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -98,7 +91,7 @@ public class MemberDao {
 		try {
 			result = session.update("member.updateMember", member);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -109,7 +102,7 @@ public class MemberDao {
 			String passwd = session.selectOne("member.deletePwdChk", m_no);
 			member.setM_passwd(passwd);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return member;
 	}
@@ -119,7 +112,7 @@ public class MemberDao {
 		try {
 			result = session.update("member.deleteMember", m_no);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
