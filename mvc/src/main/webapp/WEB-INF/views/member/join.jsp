@@ -135,42 +135,6 @@
 	}
 </script>
 
-	<!-- <div class="container">
-		<div class="col-md-offset-14 col-md-5">
-   			<div class="form-area">
-	       		<form action="join" role="form" name="frm" method="post" onsubmit="return chk()">
-	       			<input type="hidden" name="mailChk" value="false">
-		        	<input type="hidden" name="nickChk" value="false">
-		        	<br style="clear:both">
-		        	<h4 style="margin-bottom: 25px; text-align: center;">회원가입</h4>
-					<div class="form-group">
-						<b class="m">이메일:</b>
-						<input type="email" class="form-control" id="m_email" name="m_email" maxlength="30" required autofocus="autofocus">
-						<span id="email_chk"> </span>
-					</div>
-					<div class="form-group">
-						<b class="m">비밀번호:</b>
-						<label><input type="password" class="form-control" id="m_passwd" name="m_passwd" maxlength="20" required></label>
-						<span id="pwd_chk"> </span>
-					</div>
-					<div class="form-group">
-						<b class="m">비밀번호 재확인:</b>
-						<label><input type="password" class="form-control" id="m_passwd2" name="m_passwd2" maxlength="20" required></label>
-						<span id="pwd_chk2"> </span>
-					</div>
-					<div class="form-group">
-						<b class="m">닉네임:</b>
-						<label><input type="text" class="form-control" id="m_nick" name="m_nick" maxlength="10" required></label>
-						<span id="nick_chk"> </span>
-					</div>
-					<div style="margin-top: 40px; text-align: center;">
-						<button type="submit" id="submit" name="submit" class="btn btn-primary">가입하기</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div> -->
-	
 	<div class="container">
 		<form class="form-signup" action="join" role="form" name="frm" method="post" onsubmit="return chk()">
 			<input type="hidden" name="mailChk" value="false">
