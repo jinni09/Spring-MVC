@@ -2662,7 +2662,7 @@ th {
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
-	background-color: #f9f9f9;
+	background-color: #fff; /* custom */
 }
 
 .table-hover>tbody>tr:hover {

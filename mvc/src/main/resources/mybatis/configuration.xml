@@ -5,8 +5,14 @@
 	<properties resource="jdbc.properties"></properties>
 	<typeAliases>
 		<typeAlias alias="member" type="com.spring.mvc.member.model.Member" />
+		<typeAlias alias="board" type="com.spring.mvc.board.model.Board"/>
+		<typeAlias alias="reply" type="com.spring.mvc.board.model.BoardReply"/>
+		<typeAlias alias="file" type="com.spring.mvc.board.model.BoardFile"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/Member.xml" />
+		<mapper resource="mybatis/Board.xml" />
+		<mapper resource="mybatis/BoardReply.xml" />
+		<mapper resource="mybatis/BoardFile.xml" />
 	</mappers>
 </configuration>

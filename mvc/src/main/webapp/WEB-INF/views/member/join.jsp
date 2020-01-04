@@ -9,7 +9,7 @@
 				$('#email_chk').html("<font class=red>정확한 이메일 형식으로 입력해주세요.</font>");
 			} else {
 			var sendData = 'm_email='+$('#m_email').val();
-			$.post('m_emailChk.do',sendData,function(msg){
+			$.post('m_emailChk',sendData,function(msg){
  	 			if(msg == "success") {
  	 				$('#email_chk').html("<font class='red'>이미 사용 중이거나 탈퇴한 이메일입니다.</font>");
  	 				frm.mailChk.value = "false";
@@ -138,7 +138,7 @@
 	<!-- <div class="container">
 		<div class="col-md-offset-14 col-md-5">
    			<div class="form-area">
-	       		<form action="join.do" role="form" name="frm" method="post" onsubmit="return chk()">
+	       		<form action="join" role="form" name="frm" method="post" onsubmit="return chk()">
 	       			<input type="hidden" name="mailChk" value="false">
 		        	<input type="hidden" name="nickChk" value="false">
 		        	<br style="clear:both">
