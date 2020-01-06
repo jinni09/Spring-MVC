@@ -9,8 +9,8 @@
 				$('#email_chk').html("<font class=red>정확한 이메일 형식으로 입력해주세요.</font>");
 			} else {
 			var sendData = 'm_email='+$('#m_email').val();
-			$.post('m_emailChk',sendData,function(msg){
- 	 			if(msg == "success") {
+			$.post('m_emailChk',sendData,function(result){
+ 	 			if(result > 0) {
  	 				$('#email_chk').html("<font class='red'>이미 사용 중이거나 탈퇴한 이메일입니다.</font>");
  	 				frm.mailChk.value = "false";
  	 			}else {
@@ -55,8 +55,8 @@
 				$('#nick_chk').html("<font class='red'>한글, 영문 대소문자, 숫자를 이용해 주세요.</font>");
 			}else {
 				var sendData = 'm_nick='+$('#m_nick').val();
-				$.post('m_nickChk',sendData,function(msg){
-	 	 			if(msg == "success") {
+				$.post('m_nickChk',sendData,function(result){
+	 	 			if(result > 0) {
 	 	 				$('#nick_chk').html("<font class='red'>이미 사용 중인 닉네임입니다.</font>");
 	 	 				frm.nickChk.value = "false";
 	 	 			}else {

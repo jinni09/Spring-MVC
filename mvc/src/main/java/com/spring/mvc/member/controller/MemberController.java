@@ -26,7 +26,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	public String login(Member member, Model model, HttpSession session) {
+	public String login(Member member, HttpSession session) {
 		int m_no = ms.loginChk(member);
 		String result = null;
 		if(m_no != 0) {
@@ -55,25 +55,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "m_emailChk", method = RequestMethod.POST)
-	public String m_emailChk(String m_email, Model model) {
+	@ResponseBody
+	public int m_emailChk(String m_email) {
 		int result = ms.m_emailChk(m_email);
-		String msg = "";
-		if(result > 0) {
-			msg = "success";
-		}
-		model.addAttribute("msg", msg);
-		return "member/m_emailChk";
+		return result;
 	}
 	
 	@RequestMapping(value = "m_nickChk", method = RequestMethod.POST)
-	public String m_nickChk(String m_nick, Model model) {
+	@ResponseBody
+	public int m_nickChk(String m_nick) {
 		int result = ms.m_nickChk(m_nick);
-		String msg = "";
-		if(result > 0) {
-			msg = "success";
-		}
-		model.addAttribute("msg", msg);
-		return "member/m_nickChk";
+		return result;
 	}
 	
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
