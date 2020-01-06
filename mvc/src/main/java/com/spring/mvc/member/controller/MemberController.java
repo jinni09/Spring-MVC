@@ -19,19 +19,22 @@ public class MemberController {
 	private MemberService ms;
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String loginForm(Model model) {
+	public String loginForm(String url, Model model) {
+		model.addAttribute("url", url);
 		model.addAttribute("pgm", "../member/login.jsp");
 		return "decorators/main";
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	@ResponseBody
-	public String login(Member member, HttpSession session) {
+	public String login(Member member, String url, HttpSession session) {
 		int m_no = ms.loginChk(member);
 		String result = null;
-		if(m_no != 0) {
+		if(m_no > 0) {
 			session.setAttribute("m_no", m_no);
-			result = "success";
+			result = url;
+		} else {
+			result = "fail";
 		}
 		return result;
 	}

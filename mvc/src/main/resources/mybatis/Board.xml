@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="BoardResult" type="board">
 		<result property="no" column="no"/>
 	    <result property="subject" column="subject"/>
@@ -82,7 +80,7 @@
   	</select>
   	
   	<insert id="boardInsert" parameterType="board">
-  		insert into board values(#{no},#{subject},#{content},0,sysdate,null,'n',#{ref},#{re_step},#{re_level},#{m_no})
+  		insert into board values(#{no},#{subject},#{content},0,sysdate,null,'n',#{m_no})
   	</insert>
   	
   	<update id="updateRe_step" parameterType="board">
@@ -92,10 +90,6 @@
     <update id="boardUpdate" parameterType="board">
     	update board set subject=#{subject},content=#{content},update_date=sysdate where no=#{no}
 	</update>
-	
-	<select id="deletePwdChk" parameterType="Integer" resultType="String">
-		select m.m_passwd as m_passwd from board b, member m where b.no=#{no} and b.m_no=m.m_no
-	</select>
 	
 	<update id="boardDelete" parameterType="Integer">
 		update board set del_yn='y' where no=#{no}

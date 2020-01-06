@@ -14,7 +14,7 @@ create table board_reply (
 	re_no number primary key,
 	re_content varchar2(2000) not null,
 	re_reg_date date default sysdate,
-	re_update_date date,
+	re_up_date date,
 	re_del_yn char(1) default 'n' check (re_del_yn in ('y','n')),
 	no number not null,
 	m_no number not null

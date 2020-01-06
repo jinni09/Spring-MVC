@@ -10,12 +10,14 @@
 			data : $("#login").serialize(),
 			dataType: "text",
 			success : function(data){
-				if(data == "success") {
-					location.href = "/mvc";
-				} else {
+				if(data == "fail") {
 					$("#m_passwd").val("");
 					$("#m_passwd").focus();
 					$("#msg").html("<font class='red'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</font>");
+				} else if (data == "") {
+					location.href = "/mvc";
+				} else {
+					location.href = data;
 				}
 			},
 			error: function(xhr, status, error){
@@ -27,6 +29,7 @@
           
 	<div class="container">
 		<form class="form-signin" method="post" id="login">
+			<input type="hidden" name="url" value="${url}">
 			<h2 class="form-signin-heading">Sign in</h2>
 			<label for="m_email" class="sr-only">Email address</label> 
 			<input type="email" id="m_email" name="m_email" class="form-control" placeholder="Email address" required autofocus>

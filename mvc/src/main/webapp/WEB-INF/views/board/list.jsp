@@ -33,12 +33,8 @@
 					<small>게시판</small>
 				</h3>
 				<ol class="breadcrumb">
-					<li>
-						<a href="main">Home</a>
-					</li>
-					<li class="active">
-						Board
-					</li>
+					<li><a href="main">Home</a></li>
+					<li class="active">Board</li>
 				</ol>
 			</div>
 		</div>
@@ -51,7 +47,7 @@
 					</div>
 					<div class="col col-xs-6 text-right">
 						<button type="button" id="exceldown" class="btn btn-sm btn-success" style="margin-right: 5px;">엑셀다운 <em class="glyphicon glyphicon-floppy-save"></em></button>
-						<a href="writeForm?pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성<em class="glyphicon glyphicon-edit"></em></a>	
+						<a href="writeForm?pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성 <em class="glyphicon glyphicon-edit"></em></a>	
 					</div>
 				</div>
 			</div>
@@ -59,12 +55,12 @@
 				<table class="table table-striped table-bordered table-list table-hover">
 					<thead>
 						<tr>
-							<th width="5%"></th>
+							<th width="4%"></th>
 							<th width="30%">제목</th>
 							<th width="10%">글쓴이</th>
-							<th width="9%">작성일</th>
-							<th width="6%">조회수</th>
-							<th width="6%">첨부파일</th>
+							<th width="7%">작성일</th>
+							<th width="5%">조회수</th>
+							<th width="4%">파일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,17 +70,12 @@
 						<td>${no}</td>
 						<td class="text-left">
 							<c:if test="${brd.sublength > 25}">
-							<a href="view?no=${brd.no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}">
-								<c:out value="${fn:substring(brd.subject,0,25)}"/>...
-							</a>
-							</c:if>
+							<a href="view?no=${brd.no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}"><c:out value="${fn:substring(brd.subject,0,25)}"/>...</a></c:if>
 							<c:if test="${brd.sublength < 25}">
-							<a href="view?no=${brd.no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}">
-								${brd.subject}
-							</a>
+							<a href="view?no=${brd.no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}">${brd.subject}</a>
 							</c:if>
 							<c:if test="${brd.replycount > 0}">
-							<font style="font-weight: 900; color: #2196f3;">[${brd.replycount}]</font>
+							<a href="view?no=${brd.no}&pageNum=${pb.nowPage}&searchType=${searchType}&searchTxt=${searchTxt}"><font style="font-weight: 900; color: #2196f3;">[${brd.replycount}]</font></a>
 							</c:if>
 						</td>
 						<td>${brd.m_nick}</td>
@@ -96,7 +87,7 @@
 							<fmt:formatDate var="date" pattern="HH:mm" value="${regDate}" />
 						</c:if>
 						<c:if test="${now ne reg}">
-							<fmt:formatDate var="date" pattern="yyyy-MM-dd HH:mm" value="${regDate}" />
+							<fmt:formatDate var="date" pattern="yyyy-MM-dd" value="${regDate}" />
 						</c:if>
 						<td>${date}</td>
 						<td>${brd.readcount}</td>

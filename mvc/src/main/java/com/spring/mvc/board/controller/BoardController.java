@@ -83,7 +83,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "view")
-	public String view(int no, String pageNum, String searchType, String searchTxt, Model model, HttpSession session) {
+	public String view(int no, String pageNum, String searchType, String searchTxt, Model model) {
 		if (searchType == null) {
 			searchType = "all";
 		}
@@ -249,17 +249,6 @@ public class BoardController {
 		}
 	}
 
-	@RequestMapping(value = "deleteForm")
-	public String deleteForm(int no, String pageNum, Model model) {
-		Board board = bs.deletePwdChk(no);
-		String dbPass = board.getM_passwd();
-		model.addAttribute("no", no);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("dbPass", dbPass);
-		model.addAttribute("pgm", "../board/deleteForm.jsp");
-		return "decorators/main";
-	}
-
 	@RequestMapping(value = "delete")
 	public String delete(Board board, String no, BoardFile boardfile, String pageNum, Model model, HttpSession session) {
 		int number = Integer.parseInt(no);
@@ -273,15 +262,13 @@ public class BoardController {
 		if (result > 0) {
 			return "redirect:board?pageNum=" + pageNum;
 		} else {
-			model.addAttribute("msg", "삭제 실패");
-			model.addAttribute("board", board);
 			model.addAttribute("pageNum", pageNum);
-			return "forward:deleteForm?no=" + board.getNo() + "&pageNum=" + pageNum;
+			return "forward:view?no=" + no;
 		}
 	}
 
 	@RequestMapping(value = "writeReply")
-	public String writeReply(BoardReply boardReply, String pageNum, String no, Model model, HttpSession session) {
+	public String writeReply(BoardReply boardReply, String pageNum, String no, Model model) {
 		int re_no = bs.replyNo();
 		boardReply.setRe_no(re_no);
 		int result = bs.insertReply(boardReply);
@@ -376,18 +363,6 @@ public class BoardController {
 		}
 	}
 
-	/*response.setHeader("Content-Disposition", "attachment;filename="+ofileName);
-	String filePath = session.getServletContext().getRealPath("/")+fileName;
-	FileInputStream fi = new FileInputStream(filePath);
-	ServletOutputStream sout = response.getOutputStream();
-	byte[] buf = new byte[1024];
-	int size = 0;
-	while((size = fi.read(buf, 0, 1024))!=-1){
-		sout.write(buf, 0, size);
-	}
-	fi.close();
-	sout.close();*/
-	
 	@RequestMapping(value="exceldown", method=RequestMethod.GET)
 	public String excelDown(Board board, String pageNum, String searchType, String searchTxt, XSSFWorkbook workbook, HttpServletResponse response, Model model) throws Exception {
 		final int rowPerPage = 10;

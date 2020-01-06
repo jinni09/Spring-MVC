@@ -67,17 +67,6 @@ public class BoardDao {
 		return result;
 	}
 
-	public Board deletePwdChk(int number) {
-		Board board = new Board();
-		try {
-			String passwd = session.selectOne("board.deletePwdChk", number);
-			board.setM_passwd(passwd);
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return board;
-	}
-
 	public int boardDelete(int number) {
 		int result = 0;
 		int result2 = 0;

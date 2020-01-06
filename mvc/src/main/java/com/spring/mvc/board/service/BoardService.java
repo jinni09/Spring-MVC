@@ -49,10 +49,6 @@ public class BoardService {
 		return bd.boardUpdate(board);
 	}
 
-	public Board deletePwdChk(int number) {
-		return bd.deletePwdChk(number);
-	}
-
 	public int boardDelete(int number) {
 		return bd.boardDelete(number);
 	}

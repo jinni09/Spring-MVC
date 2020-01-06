@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="reply">
-	<!-- Use type aliases to avoid typing the full classname every time. -->
 	<resultMap id="replyResult" type="reply">
 		<result property="re_no" column="re_no" />
 		<result property="re_content" column="re_content" />
 		<result property="re_reg_date" column="re_reg_date" />
 		<result property="re_up_date" column="re_up_date" />
 		<result property="re_del_yn" column="re_del_yn" />
-		<result property="brd_no" column="brd_no" />
+		<result property="no" column="no" />
 		<result property="m_no" column="m_no" />
 		<result property="m_nick" column="m_nick" />
-		<result property="relength" column="relength" />		
+		<result property="relength" column="relength" />
 	</resultMap>
 
 	<select id="selectReply" resultType="reply" parameterType="Integer">
 		select re_no, re_content, re_content as up_content, to_char(re_reg_date, 'yyyy.mm.dd. hh24:mi') as
 		re_reg_date, m.m_no, m.m_nick, length(re_content) as relength from board_reply b, (select m_no, m_nick from member where m_del_yn='n') m where
-		b.m_no = m.m_no and re_del_yn = 'n' and brd_no = #{brd_no} order by re_no
+		b.m_no = m.m_no and re_del_yn = 'n' and no = #{no} order by re_no
 	</select>
 	
 	<select id="replyNo" resultType="Integer">
@@ -27,7 +25,7 @@
 	
 	<insert id="insertReply" parameterType="reply">
 		insert into board_reply values
-		(#{re_no},#{re_content},sysdate,null,'n',#{brd_no},#{m_no})
+		(#{re_no},#{re_content},sysdate,null,'n',#{no},#{m_no})
 	</insert>
 
 	<update id="updateReply" parameterType="reply">
@@ -39,7 +37,7 @@
 	</update>
 	
 	<select id="replyCount" parameterType="Integer" resultType="Integer" >
-		select count(*) from board_reply where brd_no=#{brd_no} and re_del_yn='n'
+		select count(*) from board_reply where no=#{no} and re_del_yn='n'
 	</select>
 	
 	<!-- <select id="replyOne" resultType="reply" parameterType="Integer">

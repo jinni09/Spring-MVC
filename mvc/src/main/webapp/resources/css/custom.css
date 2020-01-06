@@ -441,7 +441,135 @@ select:focus, select.form-control:focus {
 	background-image:
 		url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEUhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISF8S9ewAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
 }
-/* list.jsp */
+/* list.jsp end */
+
+/* view.jsp  */
+.noFile {
+	color: #A6A6A6;
+}
+
+.content {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+.re_panel {
+	padding: 25px;
+}
+
+.re_header {
+	border-bottom: 1px solid #D1CDF4;
+	color: #747474;
+	font-weight: 900;
+	font-size: 22px;
+}
+
+.reply_w {	
+	padding-top: 25px;
+	margin-top: 25px;
+	border-top: 1px solid #e3e3e3;
+}
+
+.reply_w textarea {
+	border:solid 1px;
+	width:88%;
+	vertical-align:top;
+}
+
+.reply_up textarea {
+	border:solid 1px;
+	width:88%;
+	vertical-align:top;
+}
+
+.reply_btn {
+	height:80px;
+	width:80px;
+}
+
+.testimonials blockquote {
+	background: #e9e7fa none repeat scroll 0 0;
+	border: medium none;
+	color: #666;
+	display: block;
+	font-size: 14px;
+	padding: 15px;
+	position: relative;
+}
+
+.testimonials blockquote::before {
+	width: 0;
+	height: 0;
+	right: 0;
+	bottom: 0;
+	content: " ";
+	display: block;
+	position: absolute;
+	border-bottom: 20px solid #fff;
+	border-right: 0 solid transparent;
+	border-left: 15px solid transparent;
+	border-left-style: inset; /*FF fixes*/
+	border-bottom-style: inset; /*FF fixes*/
+}
+
+.testimonials blockquote::after {
+	width: 0;
+	height: 0;
+	right: 0;
+	bottom: 0;
+	content: " ";
+	display: block;
+	position: absolute;
+	border-style: solid;
+	border-width: 20px 20px 0 0;
+	border-color: #e63f0c transparent transparent transparent;
+}
+
+.testimonials .carousel-info {
+	overflow: hidden;
+}
+
+.testimonials .carousel-info span {
+	display: inline;
+}
+
+.testimonials span.testimonials-name {
+	color: #400080;
+	font-size: 16px;
+	font-weight: 900;
+}
+
+.testimonials span.testimonials-post {
+	color: #656565;
+	font-weight: 300;
+	font-size: 12px;
+}
+
+.testimonials span.testimonials-menu {
+	color: #353535;
+	font-size: 16px;
+}
+
+.a_link {
+	color: #353535;
+	font-size: 13px;
+}
+
+.a_link:hover {
+	color: #353535;
+	font-size: 13px;
+}
+
+.red_link {
+	color: red;
+	font-size: 13px;
+}
+
+.red_link:hover {
+	color: red;
+	font-size: 13px;
+}
+/* view.jsp end */
 
 /* write.jsp */
 textarea, textarea.form-control, input.form-control, input[type=text],
@@ -680,109 +808,9 @@ select[multiple], select.form-control[multiple] {
 /* ----------------------------------------------------------------------- */
 /* CommunityReply.jsp */
 
-.re_top {
-	padding-top: 25px;
-}
-
-.re_bottom {
-	padding-bottom: 30px;
-}
 
 
-.a_link {
-	color: #353535;
-	font-size: 13px;
-}
 
-.a_link:hover {
-	color: #353535;
-	font-size: 13px;
-}
-
-.red_link {
-	color: red;
-	font-size: 13px;
-}
-
-.red_link:hover {
-	color: red;
-	font-size: 13px;
-}
-
-/* Testimonials */
-.testimonials blockquote {
-	background: #D1CDF4 none repeat scroll 0 0;
-	border: medium none;
-	color: #666;
-	display: block;
-	font-size: 14px;
-	padding: 15px;
-	position: relative;
-}
-
-.testimonials blockquote::before {
-	width: 0;
-	height: 0;
-	right: 0;
-	bottom: 0;
-	content: " ";
-	display: block;
-	position: absolute;
-	border-bottom: 20px solid #fff;
-	border-right: 0 solid transparent;
-	border-left: 15px solid transparent;
-	border-left-style: inset; /*FF fixes*/
-	border-bottom-style: inset; /*FF fixes*/
-}
-
-.testimonials blockquote::after {
-	width: 0;
-	height: 0;
-	right: 0;
-	bottom: 0;
-	content: " ";
-	display: block;
-	position: absolute;
-	border-style: solid;
-	border-width: 20px 20px 0 0;
-	border-color: #e63f0c transparent transparent transparent;
-}
-
-.testimonials .carousel-info {
-	overflow: hidden;
-}
-
-.testimonials .carousel-info span {
-	display: inline;
-}
-
-.testimonials span.testimonials-name {
-	color: #e6400c;
-	font-size: 16px;
-	font-weight: 900;
-}
-
-.testimonials span.testimonials-post {
-	color: #656565;
-	font-weight: 300;
-	font-size: 12px;
-}
-
-.testimonials span.testimonials-menu {
-	color: #353535;
-	font-size: 16px;
-}
-
-.replym_w {
-	margin-left: 32px;
-	width: 65%;
-}
-
-.re_header {
-	margin-left: 32px;
-	width: 65%;
-	border-bottom: 1px solid #D1CDF4;
-}
 
 .subjecttxt {
 	color: red;
