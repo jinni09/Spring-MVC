@@ -10,7 +10,7 @@
 		});
 		
 		if(frm.password.value != frm.dbPass.value) {
-			$('#password_Chk').html("<font class=red>비밀번호를 확인해주세요.</font>");
+			$('#password_Chk').html("<font class='red'>비밀번호를 확인해주세요.</font>");
 			frm.password.focus();
 			return false;
 		}

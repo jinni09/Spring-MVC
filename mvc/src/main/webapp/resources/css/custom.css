@@ -280,14 +280,20 @@ body { /* navbar-fixed-top height */
 	margin-bottom: 10px;
 }
 
-font {
-	color: red;
-	font-size: 12px;
-}
 /* login.jsp end */
 
 
 /* join.jsp */
+.red {
+	color: red;
+	font-size: 12px;
+}
+
+.green {
+	color: #2eaa08;
+	font-size: 12px;
+}
+
 .form-signup {
 	max-width: 330px;
 	padding: 15px;

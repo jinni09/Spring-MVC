@@ -15,7 +15,7 @@
 				} else {
 					$("#m_passwd").val("");
 					$("#m_passwd").focus();
-					$("#msg").html("<font>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</font>");
+					$("#msg").html("<font class='red'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</font>");
 				}
 			},
 			error: function(xhr, status, error){

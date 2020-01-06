@@ -6,7 +6,7 @@
 		$('#m_email').blur(function() {
 			var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 			if (regex.test(frm.m_email.value) === false) {
-				$('#email_chk').html("<font class=red>정확한 이메일 형식으로 입력해주세요.</font>");
+				$('#email_chk').html("<font class='red'>정확한 이메일 형식으로 입력해주세요.</font>");
 			} else {
 			var sendData = 'm_email='+$('#m_email').val();
 			$.post('m_emailChk',sendData,function(result){
