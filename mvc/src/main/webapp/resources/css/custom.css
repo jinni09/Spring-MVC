@@ -645,17 +645,6 @@ select[multiple], select.form-control[multiple] {
 	font-size: 5px;
 }
 
-/* write.jsp end */
-
-
-
-
-
-
-
-
-
-/* --------------------------------------------------------------  */
 .fileview {
 	color: #0000C9;
 	text-decoration: underline;
@@ -671,4 +660,4 @@ select[multiple], select.form-control[multiple] {
 	outline: 5px auto -webkit-focus-ring-color;
 	outline-offset: -2px;
 }
-
+/* write.jsp end */
