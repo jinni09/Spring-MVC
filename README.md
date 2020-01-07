@@ -21,7 +21,7 @@
 ###### * 게시판 리스트, 게시글 보기를 제외한 모든 기능은 로그인을 한 후 이용 가능
 - - -
 
-![mvc1](https://user-images.githubusercontent.com/58936727/71916296-fe690a00-31c0-11ea-8f58-d03135303eab.jpg)
+![mvc1](https://user-images.githubusercontent.com/58936727/71916868-3ae93580-31c2-11ea-9570-6697ae74137a.jpg)
 
 ![mvc2](https://user-images.githubusercontent.com/58936727/71916297-fe690a00-31c0-11ea-91e3-0165b38363a1.jpg)
 
