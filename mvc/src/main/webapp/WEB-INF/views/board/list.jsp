@@ -46,8 +46,11 @@
 						Page ${pb.nowPage} of ${pb.totalPage}
 					</div>
 					<div class="col col-xs-6 text-right">
+						<c:set var="m_no" value="${sessionScope.m_no}"></c:set>
+						<c:if test="${not empty m_no}">
 						<button type="button" id="exceldown" class="btn btn-sm btn-success" style="margin-right: 5px;">엑셀다운 <em class="glyphicon glyphicon-floppy-save"></em></button>
-						<a href="writeForm?pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성 <em class="glyphicon glyphicon-edit"></em></a>	
+						<a href="write?no=0&pageNum=${pb.nowPage}" class="btn btn-sm btn-primary">글작성 <em class="glyphicon glyphicon-edit"></em></a>	
+						</c:if>
 					</div>
 				</div>
 			</div>

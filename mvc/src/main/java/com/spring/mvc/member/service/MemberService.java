@@ -36,10 +36,6 @@ public class MemberService {
 		return md.updateMember(member);
 	}
 	
-	public Member m_deletePwdChk(int m_no) {
-		return md.m_deletePwdChk(m_no);
-	}
-
 	public int deleteMember(int m_no) {
 		return md.deleteMember(m_no);
 	}

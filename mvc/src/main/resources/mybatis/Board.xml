@@ -21,24 +21,24 @@
 	</resultMap>
 	
 	<select id="boardTotal" parameterType="board" resultType="Integer">
-  		select count(*) from board b, member m where b.m_no=m.m_no
+  		select count(*) from board b, member m where b.m_no=m.m_no and del_yn='n'
   			<choose>
 	  			<when test="searchType == 'all'">
 	  				<if test="searchTxt == ''">
-  					and (subject like '%'||#{searchTxt}||'%' or content like '%'||#{searchTxt}||'%')
+  					and (subject like '%'||#{searchTxt}||'%' or content like '%'||#{searchTxt}||'%') 
 	  				</if>
 	  				<if test="searchTxt != ''">
-  					and (subject like '%'||#{searchTxt}||'%' or content like '%'||#{searchTxt}||'%') and del_yn = 'n'
+  					and (subject like '%'||#{searchTxt}||'%' or content like '%'||#{searchTxt}||'%') 
 	  				</if>
   				</when>
 	  			<when test="searchType == 'subject'">
-  					and subject like '%'||#{searchTxt}||'%' and del_yn = 'n'
+  					and subject like '%'||#{searchTxt}||'%' 
   				</when>
   				<when test="searchType == 'content'">
-  					and content like '%'||#{searchTxt}||'%' and del_yn = 'n'
+  					and content like '%'||#{searchTxt}||'%' 
   				</when>
   				<when test="searchType == 'm_nick'">
-  					and m_nick like '%'||#{searchTxt}||'%' and del_yn = 'n'
+  					and m_nick like '%'||#{searchTxt}||'%' 
   				</when>
   			</choose>
   	</select>
@@ -80,15 +80,11 @@
   	</select>
   	
   	<insert id="boardInsert" parameterType="board">
-  		insert into board values(#{no},#{subject},#{content},0,sysdate,null,'n',#{m_no})
+  		insert into board values(#{no},#{subject},#{content},0,#{ip},sysdate,null,'n',#{m_no})
   	</insert>
   	
-  	<update id="updateRe_step" parameterType="board">
-  		update board set re_step=re_step+1 where ref=#{ref} and re_step>#{re_step}
-  	</update>
-	
     <update id="boardUpdate" parameterType="board">
-    	update board set subject=#{subject},content=#{content},update_date=sysdate where no=#{no}
+    	update board set subject=#{subject},content=#{content},up_date=sysdate where no=#{no}
 	</update>
 	
 	<update id="boardDelete" parameterType="Integer">
@@ -98,13 +94,5 @@
 	<update id="replyDelete" parameterType="Integer">
 		update board_reply set re_del_yn='y' where no=#{no}
 	</update>
-	
-	<select id="refTotal" parameterType="Integer" resultType="Integer">
-		select count(*) from board b, (select ref , re_level from board where no = #{no}) a where b.ref=a.ref and a.re_level+1 = b.re_level and del_yn='n'
-	</select>
-	
-	<select id="refLimit" parameterType="Integer" resultType="Integer">
-		select count(*) as reflimit from board where ref=#{ref} and del_yn='n'
-	</select>
 	
 </mapper>

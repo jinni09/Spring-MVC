@@ -40,8 +40,4 @@
 		select count(*) from board_reply where no=#{no} and re_del_yn='n'
 	</select>
 	
-	<!-- <select id="replyOne" resultType="reply" parameterType="Integer">
-		select length(re_content) as relength, r.* from board_reply r where re_no=#{re_no}
-	</select> -->
-	
 </mapper>

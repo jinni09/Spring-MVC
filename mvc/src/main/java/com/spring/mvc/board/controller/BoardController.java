@@ -27,12 +27,17 @@ import com.spring.mvc.board.model.BoardFile;
 import com.spring.mvc.board.model.BoardReply;
 import com.spring.mvc.board.service.BoardPagingBean;
 import com.spring.mvc.board.service.BoardService;
+import com.spring.mvc.member.model.Member;
+import com.spring.mvc.member.service.MemberService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private BoardService bs;
+	
+	@Autowired
+	private MemberService ms;
 
 	@RequestMapping(value = "board")
 	public String list(Board board, String pageNum, String searchType, String searchTxt, Model model) {
@@ -118,7 +123,6 @@ public class BoardController {
 		
 		List<BoardFile> fileList = bs.selectFile(no);
 		int replyCount = bs.replyCount(no);
-		int refTotal = bs.refTotal(no);
 		board.setSearchType(searchType);
 		board.setSearchTxt(searchTxt);
 		if (board.getSearchType() != null) {
@@ -130,125 +134,127 @@ public class BoardController {
 		model.addAttribute("reList", reList);
 		model.addAttribute("fileList", fileList);
 		model.addAttribute("replyCount", replyCount);
-		model.addAttribute("refTotal", refTotal);
 		model.addAttribute("bs", bs);
 		model.addAttribute("pgm", "../board/view.jsp");
 		return "decorators/main";
 	}
 
-	@RequestMapping(value = "writeForm")
-	public String writeForm(Board board, String pageNum, String no, Model model) {
-		board.setNo(0);
+	@RequestMapping(value = "write", method = RequestMethod.GET)
+	public String writeForm(Board board, String pageNum, String no, Model model, HttpSession session) {
+		int num = Integer.parseInt(no);
+		int fileCount = 0;
+		if (num == 0) {
+			board.setNo(0);
+		} else {
+			board = bs.boardSelect(num);
+			// 리플 수정 내용 맨 앞에 글자가 엔터일 시 치환 
+			char firstcontentchar = board.getContent().charAt(0);
+			String firstcontentstring = String.valueOf(firstcontentchar);
+			if(firstcontentstring.equals("\r")) {
+				String brdcontent = board.getContent().replaceFirst(firstcontentstring, "\n");
+				board.setContent(brdcontent);
+			}
+			// 치환 끝
+			List<BoardFile> fileList = bs.selectFile(num);
+			model.addAttribute("fileList", fileList);
+			fileCount = bs.fileCount(num);
+			
+		}
+		
+		Member mb = ms.selectMember((Integer)session.getAttribute("m_no"));
+		model.addAttribute("m_nick", mb.getM_nick());
 		model.addAttribute("board", board);
+		model.addAttribute("fileCount", fileCount);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("pgm", "../board/write.jsp");
 		return "decorators/main";
 	}
 
-	@RequestMapping(value = "write")
-	public String write(Board board, BoardFile boardfile, String pageNum, Model model, HttpSession session) throws IllegalStateException, IOException {
-		int number = bs.insertNo();
-		board.setNo(number);
-		List<MultipartFile> files = boardfile.getFiles();
-		while (files.remove(null));
-		System.out.println(files);
-		if (null != files && files.size() > 0) {
-			for (MultipartFile mf : files) {
-				if (!mf.isEmpty()) {
-					int fileNo = bs.fileNo();
-					String originalName = mf.getOriginalFilename();
-					String match = "[@]|[#]|[$]|[%]|[&]|[+]|[=]|[,]";
-					String re_originalName = originalName.replaceAll(match, "");
-					String uploadName = System.currentTimeMillis() + re_originalName;
-					int size = (int) mf.getSize();
-					mf.transferTo(new File(session.getServletContext().getRealPath("/") + uploadName));
-					boardfile.setF_no(fileNo);
-					boardfile.setF_original_name(originalName);
-					boardfile.setF_stored_name(uploadName);
-					boardfile.setF_size(size);
-					boardfile.setNo(number);
-					bs.fileInsert(boardfile);
+	@RequestMapping(value = "write", method = RequestMethod.POST)
+	public String write(Board board, BoardFile boardfile, String pageNum, Model model, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
+		int result = 0;
+		if(board.getNo() == 0) { // 글 등록하기
+			int number = bs.insertNo();
+			board.setNo(number);
+			board.setIp(request.getRemoteAddr());
+			List<MultipartFile> files = boardfile.getFiles();
+			while (files.remove(null));
+			if (null != files && files.size() > 0) {
+				for (MultipartFile mf : files) {
+					if (!mf.isEmpty()) {
+						int fileNo = bs.fileNo();
+						String originalName = mf.getOriginalFilename();
+						String match = "[@]|[#]|[$]|[%]|[&]|[+]|[=]|[,]";
+						String re_originalName = originalName.replaceAll(match, "");
+						String uploadName = System.currentTimeMillis() + re_originalName;
+						int size = (int) mf.getSize();
+						mf.transferTo(new File(session.getServletContext().getRealPath("/") + uploadName));
+						boardfile.setF_no(fileNo);
+						boardfile.setF_original_name(originalName);
+						boardfile.setF_stored_name(uploadName);
+						boardfile.setF_size(size);
+						boardfile.setNo(number);
+						bs.fileInsert(boardfile);
+					}
+				}
+			}
+			result = bs.boardInsert(board);
+			
+			/*for(int i=1; i<1005; i++) {
+				int number = bs.insertNo();
+				board.setNo(number);
+				board.setIp(request.getRemoteAddr());
+				String str = i+"";
+				board.setSubject("테스트"+str);
+				board.setContent("테스트"+str);
+				result = bs.boardInsert(board);
+			}*/ // 게시글 1004개 만들기
+			
+		} else { // 글 수정하기
+			result = bs.boardUpdate(board);
+			int number = board.getNo();
+			board.setIp(request.getRemoteAddr());
+			List<String> filedellist = boardfile.getFiledellist();
+			if (filedellist != null) {
+				for (String fno : filedellist) {
+					int delfno = Integer.parseInt(fno);
+					boardfile.setF_no(delfno);
+					String f_stor_name = bs.fileSelect(boardfile);
+					File f = new File(session.getServletContext().getRealPath("/") + f_stor_name); 
+					f.delete();
+					bs.fileDelete(boardfile);
+				}
+			}
+			List<MultipartFile> files = boardfile.getFiles();
+			while (files.remove(null));
+			if (null != files && files.size() > 0) {
+				for (MultipartFile mf : files) {
+					if (!mf.isEmpty()) {
+						int fileNo = bs.fileNo();
+						String originalName = mf.getOriginalFilename();
+						String match = "[@]|[#]|[$]|[%]|[&]|[+]|[=]|[,]";
+						String re_originalName = originalName.replaceAll(match, "");
+						String uploadName = System.currentTimeMillis() + re_originalName;
+						int size = (int) mf.getSize();
+						mf.transferTo(new File(session.getServletContext().getRealPath("/") + uploadName));
+						boardfile.setF_no(fileNo);
+						boardfile.setF_original_name(originalName);
+						boardfile.setF_stored_name(uploadName);
+						boardfile.setF_size(size);
+						boardfile.setNo(number);
+						bs.fileInsert(boardfile);
+					}
 				}
 			}
 		}
-		int result = bs.boardInsert(board);
 		model.addAttribute("pageNum", pageNum);
 		if (result > 0) {
 			return "redirect:view?no=" + board.getNo();
 		} else {
-			model.addAttribute("msg", "입력 실패");
-			model.addAttribute("board", board);
-			return "forward:writeForm";
+			return "redirect:write?no=" + board.getNo();
 		}
 	}
-
-	@RequestMapping(value = "updateForm")
-	public String updateForm(int no, String pageNum, Model model) {
-		Board board = bs.boardSelect(no);
-		// 리플 수정 내용 맨 앞에 글자가 엔터일 시 치환 
-		char firstcontentchar = board.getContent().charAt(0);
-		String firstcontentstring = String.valueOf(firstcontentchar);
-		if(firstcontentstring.equals("\r")) {
-			String brdcontent = board.getContent().replaceFirst(firstcontentstring, "\n");
-			board.setContent(brdcontent);
-		}
-		// 치환 끝
-		List<BoardFile> fileList = bs.selectFile(no);
-		int fileCount = bs.fileCount(no);
-		model.addAttribute("board", board);
-		model.addAttribute("fileList", fileList);
-		model.addAttribute("fileCount", fileCount);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("pgm", "../board/updateForm.jsp");
-		return "decorators/main";
-	}
-
-	@RequestMapping(value = "update")
-	public String update(Board board, BoardFile boardfile, String pageNum, Model model, HttpSession session) throws IllegalStateException, IOException {
-		int result = bs.boardUpdate(board);
-		int number = board.getNo();
-		List<String> filedellist = boardfile.getFiledellist();
-		if (filedellist != null) {
-			for (String fno : filedellist) {
-				int delfno = Integer.parseInt(fno);
-				boardfile.setF_no(delfno);
-				String f_stor_name = bs.fileSelect(boardfile);
-				File f = new File(session.getServletContext().getRealPath("/") + f_stor_name); 
-				f.delete();
-				bs.fileDelete(boardfile);
-			}
-		}
-		List<MultipartFile> files = boardfile.getFiles();
-		while (files.remove(null));
-		if (null != files && files.size() > 0) {
-			for (MultipartFile mf : files) {
-				if (!mf.isEmpty()) {
-					int fileNo = bs.fileNo();
-					String originalName = mf.getOriginalFilename();
-					String match = "[@]|[#]|[$]|[%]|[&]|[+]|[=]|[,]";
-					String re_originalName = originalName.replaceAll(match, "");
-					String uploadName = System.currentTimeMillis() + re_originalName;
-					int size = (int) mf.getSize();
-					mf.transferTo(new File(session.getServletContext().getRealPath("/") + uploadName));
-					boardfile.setF_no(fileNo);
-					boardfile.setF_original_name(originalName);
-					boardfile.setF_stored_name(uploadName);
-					boardfile.setF_size(size);
-					boardfile.setNo(number);
-					bs.fileInsert(boardfile);
-				}
-			}
-		}
-		if (result > 0) {
-			return "redirect:view?no=" + board.getNo() + "&pageNum=" + pageNum;
-		} else {
-			model.addAttribute("msg", "수정 실패");
-			model.addAttribute("board", board);
-			model.addAttribute("pageNum", pageNum);
-			return "forward:updateForm?no=" + board.getNo() + "&pageNum=" + pageNum;
-		}
-	}
-
+	
 	@RequestMapping(value = "delete")
 	public String delete(Board board, String no, BoardFile boardfile, String pageNum, Model model, HttpSession session) {
 		int number = Integer.parseInt(no);
@@ -263,7 +269,7 @@ public class BoardController {
 			return "redirect:board?pageNum=" + pageNum;
 		} else {
 			model.addAttribute("pageNum", pageNum);
-			return "forward:view?no=" + no;
+			return "redirect:view?no=" + no;
 		}
 	}
 
@@ -276,9 +282,7 @@ public class BoardController {
 		if (result > 0) {
 			return "redirect:view?no=" + boardReply.getNo();
 		} else {
-			model.addAttribute("msg", "입력 실패");
-			model.addAttribute("boardReply", boardReply);
-			return "forward:view?no=" + boardReply.getNo();
+			return "redirect:view?no=" + boardReply.getNo();
 		}
 	}
 
@@ -289,10 +293,7 @@ public class BoardController {
 			model.addAttribute("pageNum", pageNum);
 			return "redirect:view?no=" + boardReply.getNo();
 		} else {
-			model.addAttribute("msg", "수정 실패");
-			model.addAttribute("boardReply", boardReply);
-			model.addAttribute("pageNum", pageNum);
-			return "forward:view?no=" + boardReply.getNo();
+			return "redirect:view?no=" + boardReply.getNo();
 		}
 	}
 
@@ -304,10 +305,7 @@ public class BoardController {
 			model.addAttribute("pageNum", pageNum);
 			return "redirect:view?no=" + boardReply.getNo();
 		} else {
-			model.addAttribute("msg", "삭제 실패");
-			model.addAttribute("boardReply", boardReply);
-			model.addAttribute("pageNum", pageNum);
-			return "forward:view?no=" + boardReply.getNo();
+			return "redirect:view?no=" + boardReply.getNo();
 		}
 	}
 

@@ -1,9 +1,10 @@
 package com.spring.mvc.board.dao;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,8 @@ public class BoardDao {
 	@Autowired
 	private SqlSessionTemplate session;
 	
+	private static final Logger logger = LoggerFactory.getLogger(BoardDao.class);
+	
 	public List<Board> list(Board board) {
 		return session.selectList("board.boardList", board);
 	}	
@@ -26,7 +29,7 @@ public class BoardDao {
 		try {
 			total = session.selectOne("board.boardTotal", board);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return total;
 	}
@@ -48,13 +51,9 @@ public class BoardDao {
 		try {
 			result = session.insert("board.boardInsert", board);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
-	}
-
-	public void updateRe_step(Board board) {
-		session.update("board.updateRe_step", board);
 	}
 
 	public int boardUpdate(Board board) {
@@ -62,7 +61,7 @@ public class BoardDao {
 		try {
 			result = session.update("board.boardUpdate", board);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -78,7 +77,7 @@ public class BoardDao {
 				result2 = session.update("board.boardDelete", number);
 			}
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result2;
 	}
@@ -96,7 +95,7 @@ public class BoardDao {
 		try {
 			result = session.insert("reply.insertReply", boardReply);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -106,7 +105,7 @@ public class BoardDao {
 		try {
 			total = session.selectOne("reply.replyCount", brd_no);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return total;
 	}
@@ -116,7 +115,7 @@ public class BoardDao {
 		try {
 			result = session.update("reply.updateReply", boardReply);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
@@ -126,45 +125,11 @@ public class BoardDao {
 		try {
 			result = session.update("reply.deleteReply", crNo);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result;
 	}
 
-	/*public BoardReply replyOne(int cr_no) {
-		return session.selectOne("reply.replyOne", cr_no);
-	}*/
-
-	public int refTotal(int brd_no) {
-		int total = 0;
-		try {
-			total = session.selectOne("board.refTotal", brd_no);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return total;
-	}
-
-	public Date newday() {
-		Date newday = null;
-		try {
-			newday = session.selectOne("board.newday");
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return newday;
-	}
-
-	public int refLimit(int ref) {
-		int total = 0;
-		try {
-			total = session.selectOne("board.refLimit", ref);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return total;
-	}
-	
 	public int fileNo() {
 		return session.selectOne("file.fileNo");
 	}
@@ -174,7 +139,7 @@ public class BoardDao {
 		try {
 			result2 = session.insert("file.fileInsert", boardfile);
 		}catch(Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return result2;
 	}
@@ -188,7 +153,7 @@ public class BoardDao {
 		try {
 			total = session.selectOne("file.fileCount", brd_no);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return total;
 	}
@@ -202,7 +167,7 @@ public class BoardDao {
 		try {
 			f_stor_name = session.selectOne("file.fileSelect", boardfile);
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			logger.info("error Message: ", e.getMessage());
 		}
 		return f_stor_name;
 	}

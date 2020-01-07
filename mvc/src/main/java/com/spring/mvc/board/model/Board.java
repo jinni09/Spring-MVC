@@ -18,7 +18,6 @@ public class Board {
 	private int replycount;
 	private int byteSize;
 	private int sublength;
-	private int reflimit;
 	
 	// 조회용
 	private int startRow;
@@ -179,19 +178,13 @@ public class Board {
 		this.sublength = sublength;
 	}
 
-	public int getReflimit() {
-		return reflimit;
-	}
-
-	public void setReflimit(int reflimit) {
-		this.reflimit = reflimit;
-	}
-
 	@Override
 	public String toString() {
 		return "Board [no=" + no + ", subject=" + subject + ", content=" + content + ", readcount=" + readcount
 				+ ", recommend=" + recommend + ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date
-				+ ", del_yn=" + del_yn + ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd + "]";
+				+ ", del_yn=" + del_yn + ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd
+				+ ", replycount=" + replycount + ", byteSize=" + byteSize + ", sublength=" + sublength + ", startRow="
+				+ startRow + ", endRow=" + endRow + ", searchType=" + searchType + ", searchTxt=" + searchTxt + "]";
 	}
-	
+
 }

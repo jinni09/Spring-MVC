@@ -1,6 +1,5 @@
 package com.spring.mvc.board.service;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +40,6 @@ public class BoardService {
 		return bd.boardInsert(board);
 	}
 
-	public void updateRe_step(Board board) {
-		bd.updateRe_step(board);
-	}
-
 	public int boardUpdate(Board board) {
 		return bd.boardUpdate(board);
 	}
@@ -78,22 +73,6 @@ public class BoardService {
 		return bd.deleteReply(crNo);
 	}
 	
-	/*public BoardReply replyOne(int cr_no) {
-		return bd.replyOne(cr_no);
-	}*/
-	
-	public int refTotal(int brd_no) {
-		return bd.refTotal(brd_no);
-	}
-	
-	public Date newday() {
-		return bd.newday();
-	}
-
-	public int refLimit(int ref) {
-		return bd.refLimit(ref);
-	}
-
 	public int fileNo() {
 		return bd.fileNo();
 	}

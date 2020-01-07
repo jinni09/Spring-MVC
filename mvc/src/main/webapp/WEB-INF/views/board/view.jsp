@@ -166,7 +166,7 @@
 						</c:if>
 						<c:if test="${sessionScope.m_no == board.m_no}">
 							<a href="board?pageNum=${pageNum}&searchType=${searchType}&searchTxt=${searchTxt}" class="btn btn-sm btn-default" style="margin-right: 5px;">목록</a>
-							<a href="updateForm?no=${board.no}&pageNum=${pageNum}" class="btn btn-sm btn-default" style="margin-right: 5px;">수정</a>
+							<a href="write?no=${board.no}&pageNum=${pageNum}" class="btn btn-sm btn-default" style="margin-right: 5px;">수정</a>
 							<a href="javascript:delChk()" class="btn btn-sm btn-default">삭제</a>
 						</c:if>
 					</div>

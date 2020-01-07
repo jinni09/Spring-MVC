@@ -14,15 +14,13 @@ public class BoardPagingBean {
 		totalPage = (int) Math.ceil((double)total/rowPerPage);
 		totalBlk = (int) Math.ceil((double)totalPage/pagePerBlock);
 		startPage = nowPage - (nowPage - 1) % pagePerBlock;
-/*		int startPage = (nowPage - 1) / 10 * 10 + 1;*/
+		/*int startPage = (nowPage - 1) / 10 * 10 + 1;*/
 		endPage = startPage + pagePerBlock - 1;
 		if (endPage > totalPage) {
 			endPage = totalPage;
 		}
 		/* total = total - startRow + 1; */
-		
 		no = total - ((nowPage - 1) * rowPerPage);
-
 	}
 
 	public int getNowPage() {

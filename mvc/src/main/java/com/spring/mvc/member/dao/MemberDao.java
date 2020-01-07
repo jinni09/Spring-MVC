@@ -77,17 +77,6 @@ public class MemberDao {
 		}
 		return result;
 	}
-	
-	public Member m_deletePwdChk(int m_no) {
-		Member member = new Member();
-		try {
-			String passwd = session.selectOne("member.deletePwdChk", m_no);
-			member.setM_passwd(passwd);
-		}catch(Exception e) {
-			logger.info("error Message: ", e.getMessage());
-		}
-		return member;
-	}
 
 	public int deleteMember(int m_no) {
 		int result = 0;
