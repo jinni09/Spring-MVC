@@ -55,8 +55,8 @@
 				this.reset();
 			});
 			$(".up").hide();
-			$('.btnup').show();
-			$(".btnupup").hide();
+			$(this).show();
+			$(this).next().hide();
 			$(this).parent().parent().parent().nextAll(".reply_up").toggle("slow");
 			$(this).hide();
 			$(this).next().show();
