@@ -21,8 +21,25 @@
 ###### * 게시판 리스트, 게시글 보기를 제외한 모든 기능은 로그인을 한 후 이용 가능
 - - -
 
+![mvc1](https://user-images.githubusercontent.com/58936727/71916296-fe690a00-31c0-11ea-8f58-d03135303eab.jpg)
 
+![mvc2](https://user-images.githubusercontent.com/58936727/71916297-fe690a00-31c0-11ea-91e3-0165b38363a1.jpg)
 
+![mvc3](https://user-images.githubusercontent.com/58936727/71916298-fe690a00-31c0-11ea-9cd1-ead7c117cdc6.jpg)
+
+![mvc4](https://user-images.githubusercontent.com/58936727/71916307-0163fa80-31c1-11ea-8ef6-238cba843959.jpg)
+
+![mvc5](https://user-images.githubusercontent.com/58936727/71916314-045eeb00-31c1-11ea-9170-4d0f214ff72c.jpg)
+
+![mvc6](https://user-images.githubusercontent.com/58936727/71916317-0628ae80-31c1-11ea-8839-e9e329c81375.jpg)
+
+![mvc7](https://user-images.githubusercontent.com/58936727/71916322-088b0880-31c1-11ea-9e50-6208a936c05e.jpg)
+
+![mvc8](https://user-images.githubusercontent.com/58936727/71916327-0aed6280-31c1-11ea-881b-c5da55fd64c7.jpg)
+
+![mvc9](https://user-images.githubusercontent.com/58936727/71916339-10e34380-31c1-11ea-9e30-d41e47570e99.jpg)
+
+![mvc10](https://user-images.githubusercontent.com/58936727/71916338-104aad00-31c1-11ea-8455-97afa5d09c97.jpg)
 
 - - -
 - - -
