@@ -1,17 +1,21 @@
 # Spring-MVC
 
-- - -
-#### 개발 환경
+<br>
+
+## 개발 환경
 * Tool: STS 3.7.3
 * JDK 1.8.0
 * Tomcat 8.0
 * framework: Springframework 4.3.14.RELEASE
-- - -
+
+<br>
+
 #### (Spring Legacy Project - Spring MVC Project) 
-### Spring-MVC
+## Spring-MVC
 ![mvc](https://user-images.githubusercontent.com/58936727/71910023-7977f380-31b4-11ea-9384-d4de142139f8.png)
-- - -
-- - -
+
+<br>
+
 + 부트스트랩 적용
 + 로그인, 회원가입
 + 게시판(등록, 수정, 삭제, 페이징 기능, 검색 기능)
@@ -19,7 +23,8 @@
   + 파일 업로드, 다운로드
   + 리스트 엑셀 파일 생성
 ###### * 게시판 리스트, 게시글 보기를 제외한 모든 기능은 로그인을 한 후 이용 가능
-- - -
+
+<br>
 
 ![mvc1](https://user-images.githubusercontent.com/58936727/71916868-3ae93580-31c2-11ea-9570-6697ae74137a.jpg)
 
@@ -41,11 +46,10 @@
 
 ![mvc10](https://user-images.githubusercontent.com/58936727/71916338-104aad00-31c1-11ea-8455-97afa5d09c97.jpg)
 
-- - -
-- - -
-- - -
-- - -
-- - -
+<br>
+<br>
+
+***
 
 ![mvc_facets](https://user-images.githubusercontent.com/58936727/71910450-45510280-31b5-11ea-99cc-5f215369f146.png)
 
